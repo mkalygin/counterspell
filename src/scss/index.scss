@@ -1,0 +1,25 @@
+@font-face {
+  font-family: Gremlin;
+  src: url('~/src/assets/fonts/gremlin-5x5/gremlin-5x5.otf');
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: black;
+}
+
+main {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  canvas {
+    border: 3px solid white;
+  }
+}
