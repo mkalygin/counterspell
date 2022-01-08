@@ -3,9 +3,14 @@ import { PreloaderScene, MainScene } from './scenes';
 
 const config = {
     type: Phaser.AUTO,
-    width: 480,
-    height: 480,
     pixelArt: true,
+    scale: {
+        parent: 'game',
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        width: 1024,
+        height: 768,
+    },
     physics: {
         default: 'arcade',
         arcade: {
