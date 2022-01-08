@@ -1,0 +1,1 @@
+export PriestSprite from './priest';
