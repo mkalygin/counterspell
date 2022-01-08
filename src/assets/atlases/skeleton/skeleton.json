@@ -1,0 +1,127 @@
+{ "frames": {
+   "skeleton.0": {
+    "frame": { "x": 0, "y": 0, "w": 22, "h": 33 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 33 },
+    "sourceSize": { "w": 22, "h": 33 },
+    "duration": 100
+   },
+   "skeleton.1": {
+    "frame": { "x": 22, "y": 0, "w": 22, "h": 33 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 33 },
+    "sourceSize": { "w": 22, "h": 33 },
+    "duration": 100
+   },
+   "skeleton.2": {
+    "frame": { "x": 44, "y": 0, "w": 22, "h": 33 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 33 },
+    "sourceSize": { "w": 22, "h": 33 },
+    "duration": 100
+   },
+   "skeleton.3": {
+    "frame": { "x": 66, "y": 0, "w": 22, "h": 33 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 33 },
+    "sourceSize": { "w": 22, "h": 33 },
+    "duration": 100
+   },
+   "skeleton.4": {
+    "frame": { "x": 88, "y": 0, "w": 22, "h": 33 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 33 },
+    "sourceSize": { "w": 22, "h": 33 },
+    "duration": 100
+   },
+   "skeleton.5": {
+    "frame": { "x": 110, "y": 0, "w": 22, "h": 33 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 33 },
+    "sourceSize": { "w": 22, "h": 33 },
+    "duration": 100
+   },
+   "skeleton.6": {
+    "frame": { "x": 132, "y": 0, "w": 22, "h": 33 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 33 },
+    "sourceSize": { "w": 22, "h": 33 },
+    "duration": 100
+   },
+   "skeleton.7": {
+    "frame": { "x": 154, "y": 0, "w": 22, "h": 33 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 33 },
+    "sourceSize": { "w": 22, "h": 33 },
+    "duration": 100
+   },
+   "skeleton.8": {
+    "frame": { "x": 176, "y": 0, "w": 22, "h": 33 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 33 },
+    "sourceSize": { "w": 22, "h": 33 },
+    "duration": 100
+   },
+   "skeleton.9": {
+    "frame": { "x": 198, "y": 0, "w": 22, "h": 33 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 33 },
+    "sourceSize": { "w": 22, "h": 33 },
+    "duration": 100
+   },
+   "skeleton.10": {
+    "frame": { "x": 220, "y": 0, "w": 22, "h": 33 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 33 },
+    "sourceSize": { "w": 22, "h": 33 },
+    "duration": 100
+   },
+   "skeleton.11": {
+    "frame": { "x": 242, "y": 0, "w": 22, "h": 33 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 33 },
+    "sourceSize": { "w": 22, "h": 33 },
+    "duration": 100
+   },
+   "skeleton.12": {
+    "frame": { "x": 264, "y": 0, "w": 22, "h": 33 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 33 },
+    "sourceSize": { "w": 22, "h": 33 },
+    "duration": 100
+   }
+ },
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.16.3",
+  "image": "Skeleton Walk.png",
+  "format": "RGBA8888",
+  "size": { "w": 286, "h": 33 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "walking", "from": 0, "to": 12, "direction": "forward" }
+  ],
+  "layers": [
+   { "name": "legs", "opacity": 255, "blendMode": "normal" },
+   { "name": "arms", "opacity": 255, "blendMode": "normal" },
+   { "name": "body", "opacity": 255, "blendMode": "normal" },
+   { "name": "solo arm", "opacity": 255, "blendMode": "normal" },
+   { "name": "head", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

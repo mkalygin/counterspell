@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { PriestSprite } from '../sprites';
+import { SkeletonSprite } from '../sprites';
 
 class MainScene extends Phaser.Scene {
   constructor() {
@@ -24,6 +25,18 @@ class MainScene extends Phaser.Scene {
       x: this.map.widthInPixels / 2,
       y: this.map.heightInPixels / 2,
     });
+    
+    this.skeletons = [];
+    for (let i = 1; i < 2; i++) {
+      this.skeletons.push(new SkeletonSprite({
+        key: 'enemy',
+        scene: this,
+        collider: this.wallsLayer,
+        x: i * 30,
+        y: i * 30,
+      })
+      );
+    }
 
     const camera = this.cameras.main;
 
@@ -35,6 +48,7 @@ class MainScene extends Phaser.Scene {
 
   update(time, delta) {
     this.player.update(time, delta);
+    this.skeletons.forEach((x, i) => x.update(time, delta))
   }
 
   debug() {
