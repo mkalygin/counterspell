@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { PreloaderScene, MainScene } from './scenes';
+import { PreloaderScene, MenuScene, MainScene } from './scenes';
 import { SCREEN_WIDTH, SCREEN_HEIGHT } from './const';
 
 const config = {
@@ -19,7 +19,7 @@ const config = {
             gravity: { y: 0 }
         }
     },
-    scene: [PreloaderScene, MainScene],
+    scene: [PreloaderScene, MenuScene, MainScene],
 };
 
 export default new Phaser.Game(config);

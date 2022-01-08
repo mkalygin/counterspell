@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { SCREEN_WIDTH, SCREEN_HEIGHT } from 'js/const';
+import { SCREEN_WIDTH, SCREEN_HEIGHT, DEFAULT_FONT } from 'js/const';
 import dungeonTilesetPng from 'assets/tilesets/dungeon.png';
 import dungeonTilemapJson from 'assets/tilemaps/dungeon.json';
 import priestAtlasPng from 'assets/atlases/priest.png';
@@ -21,7 +21,7 @@ class PreloaderScene extends Phaser.Scene {
   }
 
   create() {
-    this.scene.start('main');
+    this.scene.start('menu');
 
     this.anims.create({
       key: 'priest-idle',
@@ -50,13 +50,13 @@ class PreloaderScene extends Phaser.Scene {
     this.progressBox.fillRect(cx - bw / 2, cy - bh / 2, bw, bh);
 
     this.progressText = this.add.text(cx, cy - bh, 'Loading...', {
-      fontFamily: 'Gremlin, monospace',
+      fontFamily: DEFAULT_FONT,
       fontSize: '20px',
       stroke: 0xffffff,
     });
 
     this.progressPercent = this.add.text(cx, cy, '0%', {
-      fontFamily: 'Gremlin, monospace',
+      fontFamily: DEFAULT_FONT,
       fontSize: '16px',
       stroke: 0xffffff,
     });
