@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { SCREEN_WIDTH, SCREEN_HEIGHT } from 'js/const';
 import dungeonTilesetPng from 'assets/tilesets/dungeon.png';
 import dungeonTilemapJson from 'assets/tilemaps/dungeon.json';
 import priestAtlasPng from 'assets/atlases/priest.png';
@@ -36,10 +37,9 @@ class PreloaderScene extends Phaser.Scene {
   }
 
   onLoadingStart() {
-    const { width, height } = this.cameras.main;
-    const cx = width / 2;
-    const cy = height / 2;
-    const bw = width / 3;
+    const cx = SCREEN_WIDTH / 2;
+    const cy = SCREEN_HEIGHT / 2;
+    const bw = SCREEN_WIDTH / 3;
     const bh = 50;
 
     this.progressPos = { cx, cy, bw, bh };
