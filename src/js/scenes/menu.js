@@ -14,7 +14,7 @@ class MenuScene extends Phaser.Scene {
     this.options = [
       {
         title: 'Continue',
-        disabled: this.lastGameState,
+        disabled: !this.lastGameState,
         onSelect: this.onContinueSelect,
       },
       {
