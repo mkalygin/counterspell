@@ -7,6 +7,7 @@ class PriestSprite extends Phaser.GameObjects.Sprite {
     this.scene.add.existing(this);
     this.scene.physics.world.enableBody(this);
     this.scene.physics.add.collider(this, collider);
+    //test
 
     this.setTexture('player', 'priest.0');
 
