@@ -4,6 +4,7 @@ import { PreloaderScene, MainScene } from './scenes';
 const config = {
     type: Phaser.AUTO,
     pixelArt: true,
+    backgroundColor: 0x000000,
     scale: {
         parent: 'game',
         mode: Phaser.Scale.FIT,
