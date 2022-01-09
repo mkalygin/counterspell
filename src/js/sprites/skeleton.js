@@ -8,7 +8,7 @@ class SkeletonSprite extends Phaser.GameObjects.Sprite {
     this.scene.physics.world.enableBody(this);
     this.scene.physics.add.collider(this, collider);
 
-    this.setTexture('enemy', 'skeleton.0');
+    this.setTexture('enemy', 'skeleton.1');
 
     this.speed = 15;
     
