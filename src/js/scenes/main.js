@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
-import { PriestSprite } from '../sprites';
-import { SkeletonSprite } from '../sprites';
+import { PriestSprite, SkeletonSprite } from 'js/sprites';
+import { UiHud } from 'js/ui';
+import { Depth } from 'js/const';
 
 class MainScene extends Phaser.Scene {
   constructor() {
@@ -8,6 +9,9 @@ class MainScene extends Phaser.Scene {
   }
 
   create() {
+    this.hud = new UiHud({ scene: this, hp: 100, totalHp: 150, mp: 100, totalMp: 120 });
+    this.add.existing(this.hud);
+
     this.map = this.make.tilemap({ key: 'dungeon' });
     this.tileset = this.map.addTilesetImage('dungeon', 'tiles');
 
@@ -33,7 +37,7 @@ class MainScene extends Phaser.Scene {
         scene: this,
         collider: this.wallsLayer,
         x: i * 30,
-        y: i * 30,
+        y: 250 + i * 30,
       })
       );
     }
@@ -57,7 +61,7 @@ class MainScene extends Phaser.Scene {
     const graphics = this.add
       .graphics()
       .setAlpha(0.75)
-      .setDepth(20);
+      .setDepth(Depth.Debug);
 
     this.wallsLayer.renderDebug(graphics, {
         tileColor: null, // Color of non-colliding tiles
