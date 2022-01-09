@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "RPG game built with Phaser 3",
   "license": "MIT",
-  "source": "sandbox/maze.html",
+  "source": "src/index.html",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "alias": {
     "js": "/src/js",
