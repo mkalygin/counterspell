@@ -12,6 +12,7 @@ class PriestSprite extends Phaser.GameObjects.Sprite {
 
     this.speed = 150;
     this.cursors = this.scene.input.keyboard.createCursorKeys();
+
   }
 
   update() {
@@ -30,6 +31,7 @@ class PriestSprite extends Phaser.GameObjects.Sprite {
 
     this.body.velocity.normalize().scale(this.speed);
   }
+
 }
 
 export default PriestSprite;

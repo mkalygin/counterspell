@@ -19,16 +19,18 @@ class SkeletonSprite extends Phaser.GameObjects.Sprite {
     this.body.setVelocityX(this.speed);
   }
 
-  update() {
+  update(player) {
     this.anims.play('skeleton-idle', true);
+    this.scene.physics.moveToObject(this, player, this.speed);
 
+/*
     if (Phaser.Math.Distance.Between(this.startX, this.startY, this.x, this.y) >= this.distance) {
         this.startX = this.x;
         this.startY = this.y;
         this.speed = this.speed * (-1);
         this.body.setVelocityX(this.speed);
     }
-
+*/
     //this.body.velocity.normalize().scale(this.speed);
   }
 }

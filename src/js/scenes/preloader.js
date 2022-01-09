@@ -6,6 +6,7 @@ import priestAtlasPng from 'assets/atlases/priest/priest.png';
 import priestAtlasJson from 'assets/atlases/priest/priest.json';
 import skeletonAtlasPng from 'assets/atlases/skeleton/skeleton.png';
 import skeletonAtlasJson from 'assets/atlases/skeleton/skeleton.json';
+import fireBallPng from 'assets/pics/fireball.png'
 
 class PreloaderScene extends Phaser.Scene {
   constructor() {
@@ -21,6 +22,7 @@ class PreloaderScene extends Phaser.Scene {
     this.load.tilemapTiledJSON('dungeon', dungeonTilemapJson);
     this.load.atlas('player', priestAtlasPng, priestAtlasJson);
     this.load.atlas('enemy', skeletonAtlasPng, skeletonAtlasJson);
+    this.load.image('fireball', fireBallPng);
   }
 
   create() {
@@ -49,7 +51,6 @@ class PreloaderScene extends Phaser.Scene {
         zeroPad: 1,
       }),
     });
-    
   }
 
   onLoadingStart() {
