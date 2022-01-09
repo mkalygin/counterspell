@@ -1,5 +1,8 @@
 import Phaser from 'phaser';
-import { SCREEN_WIDTH, SCREEN_HEIGHT, DEFAULT_FONT } from 'js/const';
+import { Color, Size, Font } from 'js/const';
+import { UiBar } from 'js/ui';
+
+import hudTilesetPng from 'assets/tilesets/hud.png';
 import dungeonTilesetPng from 'assets/tilesets/dungeon.png';
 import dungeonTilemapJson from 'assets/tilemaps/dungeon.json';
 import priestAtlasPng from 'assets/atlases/priest/priest.png';
@@ -15,9 +18,13 @@ class PreloaderScene extends Phaser.Scene {
 
   preload() {
     this.onLoadingStart();
-    this.load.on('progress', this.onLoadingProgress.bind(this));
-    this.load.on('complete', this.onLoadingComplete.bind(this));
+    this.load.on('progress', this.onLoadingProgress, this);
+    this.load.on('complete', this.onLoadingComplete, this);
 
+    this.load.spritesheet('hud', hudTilesetPng, {
+      frameWidth: Size.TileSize,
+      frameHeight: Size.TileSize,
+    });
     this.load.image('tiles', dungeonTilesetPng);
     this.load.tilemapTiledJSON('dungeon', dungeonTilemapJson);
     this.load.atlas('player', priestAtlasPng, priestAtlasJson);
@@ -26,7 +33,7 @@ class PreloaderScene extends Phaser.Scene {
   }
 
   create() {
-    this.scene.start('menu');
+    this.scene.start('main');
 
     this.anims.create({
       key: 'priest-idle',
@@ -54,48 +61,34 @@ class PreloaderScene extends Phaser.Scene {
   }
 
   onLoadingStart() {
-    const cx = SCREEN_WIDTH / 2;
-    const cy = SCREEN_HEIGHT / 2;
-    const bw = SCREEN_WIDTH / 3;
-    const bh = 50;
+    const cx = Size.ScreenWidth / 2;
+    const cy = Size.ScreenHeight / 2;
+    const width = Size.ScreenWidth / 3;
+    const height = 30;
 
-    this.progressPos = { cx, cy, bw, bh };
-    this.progressBar = this.add.graphics();
-    this.progressBox = this.add.graphics();
-
-    this.progressBox.fillStyle(0x222222, 0.8);
-    this.progressBox.fillRect(cx - bw / 2, cy - bh / 2, bw, bh);
-
-    this.progressText = this.add.text(cx, cy - bh, 'Loading...', {
-      fontFamily: DEFAULT_FONT,
-      fontSize: '20px',
-      stroke: 0xffffff,
+    this.progressBar = new UiBar({
+      width,
+      height,
+      scene: this,
+      x: cx - width / 2,
+      y: cy - height / 2,
+      fill: Color.Accent,
+      text: '0%',
+      percent: 0,
     });
 
-    this.progressPercent = this.add.text(cx, cy, '0%', {
-      fontFamily: DEFAULT_FONT,
-      fontSize: '16px',
-      stroke: 0xffffff,
-    });
-
-    this.progressText.setOrigin(0.5, 0.5);
-    this.progressPercent.setOrigin(0.5, 0.5);
+    this.add.existing(this.progressBar);
   }
 
   onLoadingProgress(value) {
-    const { cx, cy, bw, bh } = this.progressPos;
+    const percent = Math.round(100 * value);
 
-    this.progressPercent.setText(`${Math.round(value * 100)}%`);
-    this.progressBar.clear();
-    this.progressBar.fillStyle(0xffffff, 1);
-    this.progressBar.fillRect(cx - bw / 2, cy - bh / 2, bw * value, bh);
+    this.progressBar.setPercent(percent);
+    this.progressBar.setText(`${percent}%`);
   }
 
   onLoadingComplete() {
     this.progressBar.destroy();
-    this.progressBox.destroy();
-    this.progressText.destroy();
-    this.progressPercent.destroy();
   }
 }
 
