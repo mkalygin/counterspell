@@ -30,9 +30,25 @@ class PreloaderScene extends Phaser.Scene {
     this.load.atlas('player', priestAtlasPng, priestAtlasJson);
     this.load.atlas('enemy', skeletonAtlasPng, skeletonAtlasJson);
     this.load.image('fireball', fireBallPng);
+
+    //this.load.audio('themesong', 'https://github.com/photonstorm/phaser3-examples/tree/master/public/assets/audio/oedipus_wizball_highscore.mp3')
+
+
+    /*
+    https://github.com/MacChoi/App/blob/master/Piano/app.js
+    const notes = ['do','re'];
+    for (const note in notes) {
+      this.load.audio(note, 'assets/audio/piano_keys/' + note + '.mp3');
+      console.log(this.load.audio);
+    }
+    */
+
   }
 
   create() {
+    //var music = this.sound.add('themesong');
+    //music.play();
+
     this.scene.start('main');
 
     this.anims.create({

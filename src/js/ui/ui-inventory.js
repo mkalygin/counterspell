@@ -26,6 +26,8 @@ class UiInventory extends Phaser.GameObjects.Container {
 
         return cell;
       });
+
+    console.log(this.cells);
   }
 }
 

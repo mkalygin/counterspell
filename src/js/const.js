@@ -26,6 +26,7 @@ export const BarType = Object.freeze({
   Red: 15,
   Yellow: 16,
   Blue: 17,
+  White: 18
 });
 
 export const InventoryCellType = Object.freeze({
@@ -35,3 +36,13 @@ export const InventoryCellType = Object.freeze({
 export const Character = Object.freeze({
   InventorySize: 2,
 });
+
+export const SpellKeyIdx = {
+  'do': 0,
+  're': 1,
+  'mi': 2,
+  'fa': 3,
+  'sol': 4,
+  'la': 5,
+  'si': 6
+};

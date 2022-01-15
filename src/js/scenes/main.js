@@ -48,7 +48,6 @@ class MainScene extends Phaser.Scene {
     });
 
     const camera = this.cameras.main;
-
     camera.startFollow(this.player);
     camera.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
 
@@ -81,7 +80,7 @@ class MainScene extends Phaser.Scene {
   }
 
   update(time, delta) {
-    this.player.update(time, delta);
+    this.player.update(time, delta, this.hud);
     this.skeletons.forEach((x, i) => x.update(this.player))
   }
 
