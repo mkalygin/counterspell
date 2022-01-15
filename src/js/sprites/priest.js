@@ -29,6 +29,8 @@ class PriestSprite extends Phaser.GameObjects.Sprite {
       "midodo": "fireball"
     };
 
+    this.spellcount = 0;
+
     this.current_spell = "";
   }
 
@@ -66,6 +68,8 @@ class PriestSprite extends Phaser.GameObjects.Sprite {
               }
               if (this.spellbook.hasOwnProperty(this.current_spell)) {
                   console.log("spell crafted!");
+                  hud.spellpool.cells[this.spellcount].setFrame(51*32 + 1);
+                  if (this.spellcount < 2) {this.spellcount++;}
                   this.current_spell = "";
               }
           }

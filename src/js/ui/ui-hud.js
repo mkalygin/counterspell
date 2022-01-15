@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { UiBar, UiInventory, UiSpeller } from 'js/ui';
+import { UiBar, UiInventory, UiSpeller, UiSpellPool } from 'js/ui';
 import { Size, Depth, BarType } from 'js/const';
 
 class UiHud extends Phaser.GameObjects.Container {
@@ -47,10 +47,18 @@ class UiHud extends Phaser.GameObjects.Container {
       size: 40,
     });
 
+    this.spellpool = new UiSpellPool({
+      scene,
+      x: 10,
+      y: Size.ScreenHeight - 200,
+      size: 40,
+    });
+
     this.add(this.hpBar);
     this.add(this.mpBar);
     this.add(this.inventory);
     this.add(this.speller);
+    this.add(this.spellpool);
     this.setDepth(Depth.Hud);
   }
 

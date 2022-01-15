@@ -3,6 +3,7 @@ import { Color, Size, Font } from 'js/const';
 import { UiBar } from 'js/ui';
 
 import hudTilesetPng from 'assets/tilesets/hud.png';
+import rpgTilesetPng from 'assets/tilesets/Tileset.png';
 import dungeonTilesetPng from 'assets/tilesets/dungeon.png';
 import dungeonTilemapJson from 'assets/tilemaps/dungeon.json';
 import priestAtlasPng from 'assets/atlases/priest/priest.png';
@@ -25,6 +26,13 @@ class PreloaderScene extends Phaser.Scene {
       frameWidth: Size.TileSize,
       frameHeight: Size.TileSize,
     });
+
+    this.load.spritesheet('aux_tiles', rpgTilesetPng, {
+      frameWidth: Size.TileSize,
+      frameHeight: Size.TileSize,
+    });
+
+
     this.load.image('tiles', dungeonTilesetPng);
     this.load.tilemapTiledJSON('dungeon', dungeonTilemapJson);
     this.load.atlas('player', priestAtlasPng, priestAtlasJson);
