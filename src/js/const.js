@@ -46,3 +46,9 @@ export const SpellKeyIdx = {
   'la': 5,
   'si': 6
 };
+
+export const SpellPoolCellType = Object.freeze({
+  'empty': (38*32 + 6),
+  'fireball': (51*32 + 1),
+  'blink': (51*32 + 2)
+});

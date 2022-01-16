@@ -42,39 +42,9 @@ class MainScene extends Phaser.Scene {
       );
     }
 
-    this.fireballs = this.physics.add.group({
-      defaultKey: 'fireball',
-      maxSize: 10
-    });
-
     const camera = this.cameras.main;
     camera.startFollow(this.player);
     camera.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
-
-    this.input.on('pointerdown', 
-    function (pointer)
-    {
-        var bullet = this.fireballs.get(this.player.x, this.player.y);
-        bullet.setScale(0.05);
-          bullet.setActive(true);
-          bullet.setVisible(true);
-          this.physics.add.collider(bullet, this.wallsLayer, 
-            function(bullet, wall) {
-              bullet.setVisible(false);
-              bullet.setActive(false);
-          });
-
-          this.physics.add.collider(bullet, this.skeletons, 
-            function(bullet, skeleton) {
-              bullet.setVisible(false);
-              bullet.setActive(false);
-              skeleton.setActive(false);
-              skeleton.setVisible(false);
-          });
-
-          this.physics.moveToObject(bullet, pointer, 100);
-    },
-    this);
 
     //this.debug();
   }

@@ -11,6 +11,7 @@ import priestAtlasJson from 'assets/atlases/priest/priest.json';
 import skeletonAtlasPng from 'assets/atlases/skeleton/skeleton.png';
 import skeletonAtlasJson from 'assets/atlases/skeleton/skeleton.json';
 import fireBallPng from 'assets/pics/fireball.png'
+import blinkPng from 'assets/pics/blink.png'
 
 class PreloaderScene extends Phaser.Scene {
   constructor() {
@@ -38,6 +39,8 @@ class PreloaderScene extends Phaser.Scene {
     this.load.atlas('player', priestAtlasPng, priestAtlasJson);
     this.load.atlas('enemy', skeletonAtlasPng, skeletonAtlasJson);
     this.load.image('fireball', fireBallPng);
+    this.load.image('blink', blinkPng);
+
 
     //this.load.audio('themesong', 'https://github.com/photonstorm/phaser3-examples/tree/master/public/assets/audio/oedipus_wizball_highscore.mp3')
 

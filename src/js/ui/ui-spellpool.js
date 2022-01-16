@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { Size, BarType, InventoryCellType, Character } from 'js/const';
+import { Size, BarType, InventoryCellType, Character, SpellPoolCellType } from 'js/const';
 
 class UiSpellPool extends Phaser.GameObjects.Container {
     constructor({
@@ -12,7 +12,7 @@ class UiSpellPool extends Phaser.GameObjects.Container {
 
         this.cells = [];
         for (let i = 0; i < 3; i++) {
-            const cell = this.scene.add.sprite(size * i, 0, 'aux_tiles', 38*32 + 6);
+            const cell = this.scene.add.sprite(size * i, 0, 'aux_tiles', SpellPoolCellType['empty']);
             cell.setDisplaySize(size, size);
             cell.setOrigin(0, 0);
             cell.setScrollFactor(0);
