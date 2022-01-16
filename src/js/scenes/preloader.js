@@ -10,8 +10,10 @@ import priestAtlasPng from 'assets/atlases/priest/priest.png';
 import priestAtlasJson from 'assets/atlases/priest/priest.json';
 import skeletonAtlasPng from 'assets/atlases/skeleton/skeleton.png';
 import skeletonAtlasJson from 'assets/atlases/skeleton/skeleton.json';
-import fireBallPng from 'assets/pics/fireball.png'
-import blinkPng from 'assets/pics/blink.png'
+import fireBallPng from 'assets/pics/fireball.png';
+import blinkPng from 'assets/pics/blink.png';
+
+const themeAudioMp3 = new URL('../../assets/audio/wizball_highscore.mp3', import.meta.url);
 
 class PreloaderScene extends Phaser.Scene {
   constructor() {
@@ -33,7 +35,6 @@ class PreloaderScene extends Phaser.Scene {
       frameHeight: Size.TileSize,
     });
 
-
     this.load.image('tiles', dungeonTilesetPng);
     this.load.tilemapTiledJSON('dungeon', dungeonTilemapJson);
     this.load.atlas('player', priestAtlasPng, priestAtlasJson);
@@ -41,9 +42,7 @@ class PreloaderScene extends Phaser.Scene {
     this.load.image('fireball', fireBallPng);
     this.load.image('blink', blinkPng);
 
-
-    //this.load.audio('themesong', 'https://github.com/photonstorm/phaser3-examples/tree/master/public/assets/audio/oedipus_wizball_highscore.mp3')
-
+    this.load.audio('theme', themeAudioMp3.href);
 
     /*
     https://github.com/MacChoi/App/blob/master/Piano/app.js
@@ -57,8 +56,8 @@ class PreloaderScene extends Phaser.Scene {
   }
 
   create() {
-    //var music = this.sound.add('themesong');
-    //music.play();
+    const music = this.sound.add('theme');
+    music.play();
 
     this.scene.start('main');
 
