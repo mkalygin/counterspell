@@ -38,11 +38,11 @@ export const Character = Object.freeze({
 });
 
 export const SpellKeyIdx = {
-  'do': 0,
+  'od': 0,
   're': 1,
   'mi': 2,
   'fa': 3,
-  'sol': 4,
+  'so': 4,
   'la': 5,
   'si': 6
 };
@@ -52,3 +52,14 @@ export const SpellPoolCellType = Object.freeze({
   'fireball': (51*32 + 1),
   'blink': (51*32 + 2)
 });
+
+export const SpellerColors = {
+  1 : 0xff0000, //каждый
+  2 : 0xffa500, // охотник
+  3 : 0xffff00,
+  4 : 0x008000,
+  5 : 0x0000ff,
+  6 : 0x4b0082,
+  7 : 0xee82ee
+};
+

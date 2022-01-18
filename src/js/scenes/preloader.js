@@ -12,8 +12,21 @@ import skeletonAtlasPng from 'assets/atlases/skeleton/skeleton.png';
 import skeletonAtlasJson from 'assets/atlases/skeleton/skeleton.json';
 import fireBallPng from 'assets/pics/fireball.png';
 import blinkPng from 'assets/pics/blink.png';
+import {SpellKeyIdx} from "../const";
 
+//load audio
 const themeAudioMp3 = new URL('../../assets/audio/wizball_highscore.mp3', import.meta.url);
+// music keys
+const od = new URL('../../assets/audio/piano_keys/do.mp3', import.meta.url);
+const re = new URL('../../assets/audio/piano_keys/re.mp3', import.meta.url);
+const mi = new URL('../../assets/audio/piano_keys/mi.mp3', import.meta.url);
+const fa = new URL('../../assets/audio/piano_keys/fa.mp3', import.meta.url);
+const so = new URL('../../assets/audio/piano_keys/sol.mp3', import.meta.url);
+const la = new URL('../../assets/audio/piano_keys/la.mp3', import.meta.url);
+const si = new URL('../../assets/audio/piano_keys/si.mp3', import.meta.url);
+const space = new URL('../../assets/audio/piano_keys/space.wav', import.meta.url);
+const fireball_sound = new URL('../../assets/audio/fireball_shot.wav', import.meta.url);
+const blink_sound = new URL('../../assets/audio/blink.wav', import.meta.url);
 
 class PreloaderScene extends Phaser.Scene {
   constructor() {
@@ -43,21 +56,21 @@ class PreloaderScene extends Phaser.Scene {
     this.load.image('blink', blinkPng);
 
     this.load.audio('theme', themeAudioMp3.href);
-
-    /*
-    https://github.com/MacChoi/App/blob/master/Piano/app.js
-    const notes = ['do','re'];
-    for (const note in notes) {
-      this.load.audio(note, 'assets/audio/piano_keys/' + note + '.mp3');
-      console.log(this.load.audio);
-    }
-    */
-
+    this.load.audio('od', od.href);
+    this.load.audio('re', re.href);
+    this.load.audio('mi', mi.href);
+    this.load.audio('fa', fa.href);
+    this.load.audio('so', so.href);
+    this.load.audio('la', la.href);
+    this.load.audio('si', si.href);
+    this.load.audio('space', space.href);
+    this.load.audio('fireball_sound', fireball_sound.href);
+    this.load.audio('blink_sound', blink_sound.href);
   }
 
   create() {
-    const music = this.sound.add('theme');
-    music.play();
+    //const music = this.sound.add('theme');
+    //music.play();
 
     this.scene.start('main');
 

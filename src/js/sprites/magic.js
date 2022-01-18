@@ -39,6 +39,8 @@ class Fireball
 
     act(pointer)
     {
+        this.scene.magic_sound[this.spellKey].play();
+
         let bullet = this.bullets.get(this.scene.player.x, this.scene.player.y);
         bullet.setScale(0.05);
         bullet.setActive(true);
@@ -75,16 +77,19 @@ class Blink
 
     act(pointer)
     {
+        this.scene.magic_sound[this.spellKey].play();
         let bullet = this.bullets.get(this.scene.player.x, this.scene.player.y);
         bullet.setScale(0.01);
         bullet.setActive(true);
         bullet.setVisible(true);
-        this.scene.physics.add.collider(bullet, this.scene.wallsLayer,
+        this.scene.physics.add.collider(bullet, this.scene.player,
             function(bullet, wall) {
                 bullet.setActive(false);
                 bullet.setVisible(false);
             });
-        this.scene.physics.moveToObject(bullet, pointer, 1000);
+
+        this.scene.physics.moveToObject(bullet, pointer, 500);
+        this.scene.physics.moveToObject(bullet, pointer, 500);
         this.scene.player.x = pointer.x;
         this.scene.player.y = pointer.y;
 

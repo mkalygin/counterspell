@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { PriestSprite, SkeletonSprite } from 'js/sprites';
 import { UiHud } from 'js/ui';
 import { Depth } from 'js/const';
+import {SpellKeyIdx} from "../const";
 
 class MainScene extends Phaser.Scene {
   constructor() {
@@ -41,6 +42,16 @@ class MainScene extends Phaser.Scene {
       })
       );
     }
+
+    this.key_sound = {};
+    for (const spellNota in SpellKeyIdx) {
+      this.key_sound[spellNota] = this.sound.add(spellNota);
+    }
+    this.key_sound["space"] = this.sound.add("space");
+
+    this.magic_sound = {};
+    this.magic_sound["fireball"] = this.sound.add('fireball_sound');
+    this.magic_sound["blink"] = this.sound.add('blink_sound');
 
     const camera = this.cameras.main;
     camera.startFollow(this.player);
