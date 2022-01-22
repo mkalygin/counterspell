@@ -8,7 +8,7 @@ class SkeletonSprite extends Phaser.GameObjects.Sprite {
     this.scene.physics.world.enableBody(this);
     this.scene.physics.add.collider(this, collider);
 
-    this.setTexture('enemy', 'skeleton.1');
+    this.setTexture('enemy', 'walk1');
 
     this.speed = 15;
     
@@ -17,11 +17,18 @@ class SkeletonSprite extends Phaser.GameObjects.Sprite {
     this.startY = y;
 
     this.body.setVelocityX(this.speed);
+
+    this.mystate = 'walk';
+    this.anims.play('skeleton-' + this.mystate, true);
   }
 
   update(player) {
-    this.anims.play('skeleton-idle', true);
-    this.scene.physics.moveToObject(this, player, this.speed);
+   
+    if (this.mystate == 'walk') {
+      this.scene.physics.moveToObject(this, player, this.speed);
+    } else {
+      this.speed = 0;
+    }
 
 /*
     if (Phaser.Math.Distance.Between(this.startX, this.startY, this.x, this.y) >= this.distance) {
@@ -32,6 +39,12 @@ class SkeletonSprite extends Phaser.GameObjects.Sprite {
     }
 */
     //this.body.velocity.normalize().scale(this.speed);
+  }
+
+
+  triggerDamage() {
+      this.anims.play('skeleton-damage');
+      this.playAfterRepeat('skeleton-walk');
   }
 }
 

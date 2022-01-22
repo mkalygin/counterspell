@@ -55,8 +55,9 @@ class Fireball
             function(bullet, skeleton) {
                 bullet.setVisible(false);
                 bullet.setActive(false);
-                skeleton.setActive(false);
-                skeleton.setVisible(false);
+                //skeleton.setActive(false);
+                //skeleton.setVisible(false);
+                skeleton.triggerDamage();
             });
 
         this.scene.physics.moveToObject(bullet, pointer, 100);

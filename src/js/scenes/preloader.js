@@ -8,8 +8,8 @@ import dungeonTilesetPng from 'assets/tilesets/dungeon.png';
 import dungeonTilemapJson from 'assets/tilemaps/dungeon.json';
 import priestAtlasPng from 'assets/atlases/priest/priest.png';
 import priestAtlasJson from 'assets/atlases/priest/priest.json';
-import skeletonAtlasPng from 'assets/atlases/skeleton/skeleton.png';
-import skeletonAtlasJson from 'assets/atlases/skeleton/skeleton.json';
+import skeletonAtlasPng from 'assets/atlases/skeleton/skeleton_full.png';
+import skeletonAtlasJson from 'assets/atlases/skeleton/skeleton_full.json';
 import fireBallPng from 'assets/pics/fireball.png';
 import blinkPng from 'assets/pics/blink.png';
 import {SpellKeyIdx} from "../const";
@@ -87,13 +87,61 @@ class PreloaderScene extends Phaser.Scene {
     });
 
     this.anims.create({
-      key: 'skeleton-idle',
+      key: 'skeleton-stand',
       frameRate: 10,
       repeat: -1,
       frames: this.anims.generateFrameNames('enemy', {
-        prefix: 'skeleton.',
-        start: 0,
-        end: 3,
+        prefix: 'stand',
+        start: 1,
+        end: 4,
+        zeroPad: 1,
+      }),
+    });
+
+    this.anims.create({
+      key: 'skeleton-walk',
+      frameRate: 10,
+      repeat: -1,
+      frames: this.anims.generateFrameNames('enemy', {
+        prefix: 'walk',
+        start: 1,
+        end: 24,
+        zeroPad: 1,
+      }),
+    });
+
+    this.anims.create({
+      key: 'skeleton-damage',
+      frameRate: 10,
+      repeat: -1,
+      frames: this.anims.generateFrameNames('enemy', {
+        prefix: 'damage',
+        start: 1,
+        end: 7,
+        zeroPad: 1,
+      }),
+    });
+    
+    this.anims.create({
+      key: 'skeleton-attack',
+      frameRate: 10,
+      repeat: -1,
+      frames: this.anims.generateFrameNames('enemy', {
+        prefix: 'attack',
+        start: 1,
+        end: 16,
+        zeroPad: 1,
+      }),
+    });
+
+    this.anims.create({
+      key: 'skeleton-die',
+      frameRate: 10,
+      repeat: -1,
+      frames: this.anims.generateFrameNames('enemy', {
+        prefix: 'die',
+        start: 1,
+        end: 15,
         zeroPad: 1,
       }),
     });
