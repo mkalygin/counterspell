@@ -1,9 +1,32 @@
 import Phaser from 'phaser';
-import { SCREEN_WIDTH, SCREEN_HEIGHT, DEFAULT_FONT } from 'js/const';
+import { Color, Size, Font } from 'js/const';
+import { UiBar } from 'js/ui';
+
+import hudTilesetPng from 'assets/tilesets/hud.png';
+import rpgTilesetPng from 'assets/tilesets/Tileset.png';
 import dungeonTilesetPng from 'assets/tilesets/dungeon.png';
 import dungeonTilemapJson from 'assets/tilemaps/dungeon.json';
-import priestAtlasPng from 'assets/atlases/priest.png';
-import priestAtlasJson from 'assets/atlases/priest.json';
+import priestAtlasPng from 'assets/atlases/priest/priest.png';
+import priestAtlasJson from 'assets/atlases/priest/priest.json';
+import skeletonAtlasPng from 'assets/atlases/skeleton/skeleton.png';
+import skeletonAtlasJson from 'assets/atlases/skeleton/skeleton.json';
+import fireBallPng from 'assets/pics/fireball.png';
+import blinkPng from 'assets/pics/blink.png';
+import {SpellKeyIdx} from "../const";
+
+//load audio
+const themeAudioMp3 = new URL('../../assets/audio/wizball_highscore.mp3', import.meta.url);
+// music keys
+const od = new URL('../../assets/audio/piano_keys/do.mp3', import.meta.url);
+const re = new URL('../../assets/audio/piano_keys/re.mp3', import.meta.url);
+const mi = new URL('../../assets/audio/piano_keys/mi.mp3', import.meta.url);
+const fa = new URL('../../assets/audio/piano_keys/fa.mp3', import.meta.url);
+const so = new URL('../../assets/audio/piano_keys/sol.mp3', import.meta.url);
+const la = new URL('../../assets/audio/piano_keys/la.mp3', import.meta.url);
+const si = new URL('../../assets/audio/piano_keys/si.mp3', import.meta.url);
+const space = new URL('../../assets/audio/piano_keys/space.wav', import.meta.url);
+const fireball_sound = new URL('../../assets/audio/fireball_shot.wav', import.meta.url);
+const blink_sound = new URL('../../assets/audio/blink.wav', import.meta.url);
 
 class PreloaderScene extends Phaser.Scene {
   constructor() {
@@ -12,16 +35,44 @@ class PreloaderScene extends Phaser.Scene {
 
   preload() {
     this.onLoadingStart();
-    this.load.on('progress', this.onLoadingProgress.bind(this));
-    this.load.on('complete', this.onLoadingComplete.bind(this));
+    this.load.on('progress', this.onLoadingProgress, this);
+    this.load.on('complete', this.onLoadingComplete, this);
+
+    this.load.spritesheet('hud', hudTilesetPng, {
+      frameWidth: Size.TileSize,
+      frameHeight: Size.TileSize,
+    });
+
+    this.load.spritesheet('aux_tiles', rpgTilesetPng, {
+      frameWidth: Size.TileSize,
+      frameHeight: Size.TileSize,
+    });
 
     this.load.image('tiles', dungeonTilesetPng);
     this.load.tilemapTiledJSON('dungeon', dungeonTilemapJson);
     this.load.atlas('player', priestAtlasPng, priestAtlasJson);
+    this.load.atlas('enemy', skeletonAtlasPng, skeletonAtlasJson);
+    this.load.image('fireball', fireBallPng);
+    this.load.image('blink', blinkPng);
+
+    this.load.audio('theme', themeAudioMp3.href);
+    this.load.audio('od', od.href);
+    this.load.audio('re', re.href);
+    this.load.audio('mi', mi.href);
+    this.load.audio('fa', fa.href);
+    this.load.audio('so', so.href);
+    this.load.audio('la', la.href);
+    this.load.audio('si', si.href);
+    this.load.audio('space', space.href);
+    this.load.audio('fireball_sound', fireball_sound.href);
+    this.load.audio('blink_sound', blink_sound.href);
   }
 
   create() {
-    this.scene.start('menu');
+    //const music = this.sound.add('theme');
+    //music.play();
+
+    this.scene.start('main');
 
     this.anims.create({
       key: 'priest-idle',
@@ -34,51 +85,49 @@ class PreloaderScene extends Phaser.Scene {
         zeroPad: 1,
       }),
     });
+
+    this.anims.create({
+      key: 'skeleton-idle',
+      frameRate: 10,
+      repeat: -1,
+      frames: this.anims.generateFrameNames('enemy', {
+        prefix: 'skeleton.',
+        start: 0,
+        end: 3,
+        zeroPad: 1,
+      }),
+    });
   }
 
   onLoadingStart() {
-    const cx = SCREEN_WIDTH / 2;
-    const cy = SCREEN_HEIGHT / 2;
-    const bw = SCREEN_WIDTH / 3;
-    const bh = 50;
+    const cx = Size.ScreenWidth / 2;
+    const cy = Size.ScreenHeight / 2;
+    const width = Size.ScreenWidth / 3;
+    const height = 30;
 
-    this.progressPos = { cx, cy, bw, bh };
-    this.progressBar = this.add.graphics();
-    this.progressBox = this.add.graphics();
-
-    this.progressBox.fillStyle(0x222222, 0.8);
-    this.progressBox.fillRect(cx - bw / 2, cy - bh / 2, bw, bh);
-
-    this.progressText = this.add.text(cx, cy - bh, 'Loading...', {
-      fontFamily: DEFAULT_FONT,
-      fontSize: '20px',
-      stroke: 0xffffff,
+    this.progressBar = new UiBar({
+      width,
+      height,
+      scene: this,
+      x: cx - width / 2,
+      y: cy - height / 2,
+      fill: Color.Accent,
+      text: '0%',
+      percent: 0,
     });
 
-    this.progressPercent = this.add.text(cx, cy, '0%', {
-      fontFamily: DEFAULT_FONT,
-      fontSize: '16px',
-      stroke: 0xffffff,
-    });
-
-    this.progressText.setOrigin(0.5, 0.5);
-    this.progressPercent.setOrigin(0.5, 0.5);
+    this.add.existing(this.progressBar);
   }
 
   onLoadingProgress(value) {
-    const { cx, cy, bw, bh } = this.progressPos;
+    const percent = Math.round(100 * value);
 
-    this.progressPercent.setText(`${Math.round(value * 100)}%`);
-    this.progressBar.clear();
-    this.progressBar.fillStyle(0xffffff, 1);
-    this.progressBar.fillRect(cx - bw / 2, cy - bh / 2, bw * value, bh);
+    this.progressBar.setPercent(percent);
+    this.progressBar.setText(`${percent}%`);
   }
 
   onLoadingComplete() {
     this.progressBar.destroy();
-    this.progressBox.destroy();
-    this.progressText.destroy();
-    this.progressPercent.destroy();
   }
 }
 

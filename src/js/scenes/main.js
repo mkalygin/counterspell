@@ -1,5 +1,8 @@
 import Phaser from 'phaser';
-import { PriestSprite } from '../sprites';
+import { PriestSprite, SkeletonSprite } from 'js/sprites';
+import { UiHud } from 'js/ui';
+import { Depth } from 'js/const';
+import {SpellKeyIdx} from "../const";
 
 class MainScene extends Phaser.Scene {
   constructor() {
@@ -7,6 +10,9 @@ class MainScene extends Phaser.Scene {
   }
 
   create() {
+    this.hud = new UiHud({ scene: this, hp: 100, totalHp: 150, mp: 100, totalMp: 120 });
+    this.add.existing(this.hud);
+
     this.map = this.make.tilemap({ key: 'dungeon' });
     this.tileset = this.map.addTilesetImage('dungeon', 'tiles');
 
@@ -24,17 +30,39 @@ class MainScene extends Phaser.Scene {
       x: this.map.widthInPixels / 2,
       y: this.map.heightInPixels / 2,
     });
+    
+    this.skeletons = [];
+    for (let i = 1; i < 2; i++) {
+      this.skeletons.push(new SkeletonSprite({
+        key: 'enemy',
+        scene: this,
+        collider: this.wallsLayer,
+        x: i * 30,
+        y: 250 + i * 30,
+      })
+      );
+    }
+
+    this.key_sound = {};
+    for (const spellNota in SpellKeyIdx) {
+      this.key_sound[spellNota] = this.sound.add(spellNota);
+    }
+    this.key_sound["space"] = this.sound.add("space");
+
+    this.magic_sound = {};
+    this.magic_sound["fireball"] = this.sound.add('fireball_sound');
+    this.magic_sound["blink"] = this.sound.add('blink_sound');
 
     const camera = this.cameras.main;
-
     camera.startFollow(this.player);
     camera.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
 
-    this.debug();
+    //this.debug();
   }
 
   update(time, delta) {
-    this.player.update(time, delta);
+    this.player.update(time, delta, this.hud);
+    this.skeletons.forEach((x, i) => x.update(this.player))
   }
 
   debug() {
@@ -43,7 +71,7 @@ class MainScene extends Phaser.Scene {
     const graphics = this.add
       .graphics()
       .setAlpha(0.75)
-      .setDepth(20);
+      .setDepth(Depth.Debug);
 
     this.wallsLayer.renderDebug(graphics, {
         tileColor: null, // Color of non-colliding tiles

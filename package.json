@@ -20,5 +20,6 @@
   "dependencies": {
     "colyseus.js": "^0.14.13",
     "phaser": "^3.55.2"
-  }
+  },
+  "homepage": "https://mkalygin.github.io/counterspell"
 }
