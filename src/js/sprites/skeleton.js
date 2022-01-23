@@ -16,35 +16,47 @@ class SkeletonSprite extends Phaser.GameObjects.Sprite {
     this.startX = x;
     this.startY = y;
 
-    this.body.setVelocityX(this.speed);
+    this.health = 100;
 
-    this.mystate = 'walk';
+    //this.body.setVelocityX(this.speed);
+
+    this.mystate = 'stand';
     this.anims.play('skeleton-' + this.mystate, true);
   }
 
   update(player) {
-   
-    if (this.mystate == 'walk') {
-      this.scene.physics.moveToObject(this, player, this.speed);
-    } else {
-      this.speed = 0;
-    }
 
-/*
-    if (Phaser.Math.Distance.Between(this.startX, this.startY, this.x, this.y) >= this.distance) {
-        this.startX = this.x;
-        this.startY = this.y;
-        this.speed = this.speed * (-1);
-        this.body.setVelocityX(this.speed);
-    }
-*/
-    //this.body.velocity.normalize().scale(this.speed);
   }
 
+  animate_damage() {
+    this.anims.play('skeleton-damage', false);
+    var timer = this.scene.time.delayedCall(700, this.start_moving, [], this);
+  }
 
-  triggerDamage() {
-      this.anims.play('skeleton-damage');
-      this.playAfterRepeat('skeleton-walk');
+  animate_death() {
+    this.anims.play('skeleton-die', false);
+    var timer = this.scene.time.delayedCall(1000, this.die, [], this);
+  }
+
+  die() {
+    this.anims.stop();
+    //this.kill();
+    this.destroy();
+  }
+
+  start_moving() {
+    this.anims.play('skeleton-walk', false);
+    this.scene.physics.moveToObject(this, this.scene.player, this.speed);
+  }
+
+  triggerDamage(damage_value) {
+    this.health -= damage_value;
+    console.log(this.health);
+    if (this.health > 0) {
+      this.animate_damage();
+    } else {
+      this.animate_death();
+    }
   }
 }
 

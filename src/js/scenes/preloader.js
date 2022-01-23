@@ -100,7 +100,7 @@ class PreloaderScene extends Phaser.Scene {
 
     this.anims.create({
       key: 'skeleton-walk',
-      frameRate: 10,
+      frameRate: 30,
       repeat: -1,
       frames: this.anims.generateFrameNames('enemy', {
         prefix: 'walk',

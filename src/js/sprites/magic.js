@@ -48,16 +48,14 @@ class Fireball
         this.scene.physics.add.collider(bullet, this.scene.wallsLayer,
             function(bullet, wall) {
                 bullet.setVisible(false);
-                bullet.setActive(false);
+                bullet.destroy(false);
             });
 
         this.scene.physics.add.collider(bullet, this.scene.skeletons,
             function(bullet, skeleton) {
                 bullet.setVisible(false);
-                bullet.setActive(false);
-                //skeleton.setActive(false);
-                //skeleton.setVisible(false);
-                skeleton.triggerDamage();
+                bullet.destroy(false);
+                skeleton.triggerDamage(34);
             });
 
         this.scene.physics.moveToObject(bullet, pointer, 100);
@@ -85,7 +83,7 @@ class Blink
         bullet.setVisible(true);
         this.scene.physics.add.collider(bullet, this.scene.player,
             function(bullet, wall) {
-                bullet.setActive(false);
+                bullet.destroy(false);
                 bullet.setVisible(false);
             });
 

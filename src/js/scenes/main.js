@@ -57,7 +57,7 @@ class MainScene extends Phaser.Scene {
     camera.startFollow(this.player);
     camera.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
 
-    //this.debug();
+    this.debug();
   }
 
   update(time, delta) {

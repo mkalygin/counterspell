@@ -14,8 +14,8 @@
     "build": "parcel build"
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.1.0",
-    "parcel": "^2.1.0"
+    "@parcel/transformer-sass": "^2.2.0",
+    "parcel": "^2.2.0"
   },
   "dependencies": {
     "colyseus.js": "^0.14.13",
