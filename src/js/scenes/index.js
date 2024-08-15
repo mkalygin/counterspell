@@ -1,3 +1,3 @@
-export PreloaderScene from './preloader';
-export MenuScene from './menu';
-export MainScene from './main';
+export {default as PreloaderScene} from './preloader';
+export {default as MenuScene} from './menu';
+export {default as MainScene} from './main';
